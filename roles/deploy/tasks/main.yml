@@ -35,7 +35,7 @@
 
 - name: Display contents
   debug:
-  var: compose_file.stdout_lines
+    var: compose_file.stdout_lines
 
 - name: Clean docker components (docker-compose down)
   docker_service:
