@@ -2,7 +2,7 @@ version: '2'
 services:
   tomcat:
     container_name: "tomcat"
-    build: "~/docker/tomcat"
+    build: "/docker/tomcat"
     image: "tomcat-petclinic-{{ build_id }}:latest"
     restart: always
     privileged: true
