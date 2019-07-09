@@ -48,3 +48,6 @@
   docker_service:
     project_src: "~/docker"
     register: createoutput
+
+- debug:
+    var: createoutput
