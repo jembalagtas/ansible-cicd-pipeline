@@ -38,14 +38,14 @@
     var: compose_file.stdout_lines
 
 - name: Clean docker components (docker-compose down)
-  docker_service:
+  docker_compose:
     project_src: "~/docker"
     state: absent
     remove_images: local
     remove_orphans: yes
 
 - name: create-compose-file | Create docker components (docker-compose up)
-  docker_service:
+  docker_compose:
     project_src: "~/docker"
     register: createoutput
 
