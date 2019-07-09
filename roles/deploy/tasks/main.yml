@@ -2,35 +2,35 @@
 - name: Create Docker Directory
   file:
     state: directory
-    path: "~/docker/tomcat"
+    path: "/docker/tomcat"
 
 - name: Create Dockerfile for Tomcat
   template:
     src: dockerfile-tomcat.j2
-    dest: "~/docker/tomcat/Dockerfile"
+    dest: "/docker/tomcat/Dockerfile"
 
 
 - name: Copy files to Docker Directory
   copy:
     src: ./roles/deploy/files/
-    dest: "~/docker/tomcat/"
+    dest: "/docker/tomcat/"
     mode: 0755
     remote_src: no
 
 - name: Download PetClinic War File
   get_url:
     url: "http://wdcdmzyz22033182.ibmcloud.dst.ibm.com/nexus/service/local/repositories/PETCLINIC/content/petclinic-{{ build_id }}.war"
-    dest: "~/docker/tomcat/petclinic.war"
+    dest: "/docker/tomcat/petclinic.war"
     username: admin
     password: admin
 
 - name: Create Docker Compose file
   template:
     src: docker-compose.yml.j2
-    dest: "~/docker/docker-compose.yml"
+    dest: "/docker/docker-compose.yml"
 
 - name: Check contents
-  shell: "cat ~/docker/docker-compose.yml"
+  shell: "cat /docker/docker-compose.yml"
   register: compose_file
 
 - name: Display contents
@@ -39,14 +39,14 @@
 
 - name: Clean docker components (docker-compose down)
   docker_compose:
-    project_src: "~/docker"
+    project_src: "/docker"
     state: absent
     remove_images: local
     remove_orphans: yes
 
 - name: create-compose-file | Create docker components (docker-compose up)
   docker_compose:
-    project_src: "~/docker"
+    project_src: "/docker"
   register: createoutput
 
 - debug:
