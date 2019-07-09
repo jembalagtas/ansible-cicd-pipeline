@@ -17,6 +17,13 @@
     mode: 0755
     remote_src: no
 
+- name: Download PetClinic War File
+  get_url:
+    url: "http://wdcdmzyz22033182.ibmcloud.dst.ibm.com/nexus/service/local/repositories/PETCLINIC/content/petclinic-{{ build_id }}.war"
+    dest: "~/docker/tomcat/petclinic.war"
+    username: admin
+    password: admin
+
 - name: Create Docker Compose file
   template:
     src: docker-compose.yml.j2
@@ -29,7 +36,6 @@
 - name: Display contents
   debug:
   var: compose_file.stdout_lines
-
 
 - name: Clean docker components (docker-compose down)
   docker_service:

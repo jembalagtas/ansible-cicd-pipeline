@@ -1,6 +1,7 @@
 ---
 - name: "{{ target }}"
   gather_facts: no
+  become: True
+  become_user: root
   roles:
-    - maven
-    - create-compose-file
+    - deploy
