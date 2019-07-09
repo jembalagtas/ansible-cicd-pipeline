@@ -1,0 +1,6 @@
+---
+- name: "{{ target }}"
+  gather_facts: no
+  roles:
+    - maven
+    - create-compose-file
