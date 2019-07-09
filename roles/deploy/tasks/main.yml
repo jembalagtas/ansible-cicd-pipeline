@@ -47,7 +47,7 @@
 - name: create-compose-file | Create docker components (docker-compose up)
   docker_compose:
     project_src: "~/docker"
-    register: createoutput
+  register: createoutput
 
 - debug:
     var: createoutput
